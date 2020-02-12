@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Borrar_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Table_22">
+          <Key>
+            <PropertyRef Name="pk1" />
+          </Key>
+          <Property Name="col1" Type="nchar" MaxLength="10" />
+          <Property Name="pk1" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="fk_pk1" Type="bigint" />
+        </EntityType>
+        <EntityType Name="Table_Borrar">
+          <Key>
+            <PropertyRef Name="pk1" />
+          </Key>
+          <Property Name="MyColumn" Type="nvarchar" MaxLength="50" />
+          <Property Name="pk1" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'Borrar_DB.dbo.View_Borrar_Table' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="View_Borrar_Table">
+          <Property Name="MyColumn" Type="nvarchar" MaxLength="50" />
+        </EntityType>-->
+        <Association Name="FK_Table_22_Table_Borrar">
+          <End Role="Table_Borrar" Type="Self.Table_Borrar" Multiplicity="0..1" />
+          <End Role="Table_22" Type="Self.Table_22" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Borrar">
+              <PropertyRef Name="pk1" />
+            </Principal>
+            <Dependent Role="Table_22">
+              <PropertyRef Name="fk_pk1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="My_Borrar_SP" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="p1" Type="varchar" Mode="In" />
+        </Function>
+        <EntityContainer Name="Borrar_DBModelStoreContainer">
+          <EntitySet Name="Table_22" EntityType="Self.Table_22" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Table_Borrar" EntityType="Self.Table_Borrar" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Table_22_Table_Borrar" Association="Self.FK_Table_22_Table_Borrar">
+            <End Role="Table_Borrar" EntitySet="Table_Borrar" />
+            <End Role="Table_22" EntitySet="Table_22" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Borrar_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Table_22">
+          <Key>
+            <PropertyRef Name="pk1" />
+          </Key>
+          <Property Name="col1" Type="String" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="pk1" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="fk_pk1" Type="Int64" />
+          <NavigationProperty Name="Table_Borrar" Relationship="Self.FK_Table_22_Table_Borrar" FromRole="Table_22" ToRole="Table_Borrar" />
+        </EntityType>
+        <EntityType Name="Table_Borrar">
+          <Key>
+            <PropertyRef Name="pk1" />
+          </Key>
+          <Property Name="MyColumn" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pk1" Type="Int64" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="Table_22" Relationship="Self.FK_Table_22_Table_Borrar" FromRole="Table_Borrar" ToRole="Table_22" />
+        </EntityType>
+        <Association Name="FK_Table_22_Table_Borrar">
+          <End Role="Table_Borrar" Type="Self.Table_Borrar" Multiplicity="0..1" />
+          <End Role="Table_22" Type="Self.Table_22" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Table_Borrar">
+              <PropertyRef Name="pk1" />
+            </Principal>
+            <Dependent Role="Table_22">
+              <PropertyRef Name="fk_pk1" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Borrar_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Table_22" EntityType="Self.Table_22" />
+          <EntitySet Name="Table_Borrar" EntityType="Self.Table_Borrar" />
+          <AssociationSet Name="FK_Table_22_Table_Borrar" Association="Self.FK_Table_22_Table_Borrar">
+            <End Role="Table_Borrar" EntitySet="Table_Borrar" />
+            <End Role="Table_22" EntitySet="Table_22" />
+          </AssociationSet>
+          <FunctionImport Name="My_Borrar_SP" ReturnType="Collection(Borrar_DBModel.My_Borrar_SP_Result)">
+          <Parameter Name="p1" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="My_Borrar_SP1" ReturnType="Collection(Borrar_DBModel.My_Borrar_SP1_Result)">
+          <Parameter Name="p1" Mode="In" Type="String" />
+          </FunctionImport>
+        </EntityContainer>
+        <ComplexType Name="My_Borrar_SP_Result">
+          <Property Type="String" Name="MyColumn" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="pk1" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="My_Borrar_SP1_Result">
+          <Property Type="String" Name="MyColumn" Nullable="true" MaxLength="50" />
+          <Property Type="Int64" Name="pk1" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+    <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Borrar_DBModelStoreContainer" CdmEntityContainer="Borrar_DBEntities">
+    <EntitySetMapping Name="Table_22">
+      <EntityTypeMapping TypeName="IsTypeOf(Borrar_DBModel.Table_22)">
+        <MappingFragment StoreEntitySet="Table_22">
+          <ScalarProperty Name="pk1" ColumnName="pk1" />
+          <ScalarProperty Name="col1" ColumnName="col1" />
+          <ScalarProperty Name="fk_pk1" ColumnName="fk_pk1" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Table_Borrar">
+      <EntityTypeMapping TypeName="IsTypeOf(Borrar_DBModel.Table_Borrar)">
+        <MappingFragment StoreEntitySet="Table_Borrar">
+          <ScalarProperty Name="pk1" ColumnName="pk1" />
+          <ScalarProperty Name="MyColumn" ColumnName="MyColumn" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="My_Borrar_SP1" FunctionName="Borrar_DBModel.Store.My_Borrar_SP">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="Borrar_DBModel.My_Borrar_SP1_Result">
+                <ScalarProperty Name="MyColumn" ColumnName="MyColumn" />
+                <ScalarProperty Name="pk1" ColumnName="pk1" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+  </EntityContainerMapping>
+</Mapping></edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="False" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
